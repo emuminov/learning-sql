@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mariadb:12
+    container_name: learning-sql
+    restart: always
+
+    environment:
+        MARIADB_ROOT_PASSWORD: 123
+    ports:
+        - "4242:3306"
+    volumes:
+        - db_volume:/var/lib/mysql
+        - ./init-db-scripts:/docker-entrypoint-initdb.d
+
+volumes:
+  db_volume:
+      name: db_volume
